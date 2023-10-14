@@ -1,0 +1,10 @@
+ipykernel
+notebook
+pandas==1.5.3
+numpy
+plotly==5.17.0
+matplotlib
+python-dotenv
+seaborn
+openpyxl
+scikit-learn
