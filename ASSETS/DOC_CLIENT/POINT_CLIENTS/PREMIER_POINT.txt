@@ -1,0 +1,29 @@
+J'ai explorer vos données en montant un premier Dashboard, 
+premièrement vous m'arretez si je me trompe, nos données reçu vont de septembre 2016 à septembre 2018. 
+ce qui représente 99K commande, 96K clients pour 16M de CA.
+Vos clients sont plutot des opportuniste (clients qui viennent sur votre site, achetent une fois et on ne les revoit plus) 
+Ils achetent en moyenne quasiment 1 seul article (1.36 NAC) qui est en moyenne à 160 euros.
+ils achetent principalement en amèrique du sud !
+
+
+
+order_delivered_customer_date validation client ? 
+order_delivered_carrier_date validation livreur ? 
+order_estimated_delivery_date comment est-ce fournis jusqu'as présent ? 
+
+AMPLITUDE CALENDAIRE :
+15/09/2016 -> 03/09/2018
+
++ vieux 
+
+
+
+analyse du temps de livraison jour ouvré et disatnce
+
+delai de livraison + geographique position voir note en relation 
+
+
+Il me faut un dataset contenant les les clients, les reviews de ces clients et les commandes de ces clients 
+
+
+TOP SELLERS

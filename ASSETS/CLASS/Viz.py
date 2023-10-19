@@ -78,7 +78,7 @@ class Viz:
          Parameters : self
          Returns : df
          ---------------------------------------------------------"""
-        print(f'Notre Dataset est composé de {df.shape[0]} Clients et {df.shape[1]} attributs')
+        print(f'Notre Dataset est composé de {df.shape[0]} lignes et {df.shape[1]} attributs')
         temp_df=self.df.copy()
         samples = []
         for i in temp_df.columns:
