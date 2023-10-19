@@ -1,37 +1,47 @@
 import pandas as pd
+import glob
 from matplotlib import pyplot as plt
 import seaborn as sns
 sns.set_style("ticks")
+import plotly.express as px
+from Viz import Viz
+import os 
+class DataAnalyzer:
 
-class CSVAnalyzer:
+    def __init__(self, directory_path):
+        self.dataframes = {}
+        self._load_dataframes(directory_path)
+        
+    def _load_dataframes(self, directory_path):
+        search_path = os.path.join(directory_path, "*.csv")  # Construisez le chemin avec os.path.join
+        print(f"Searching for files in: {search_path}")  # Print le chemin recherché
+        for file_path in glob.glob(search_path):
+            file_name = os.path.basename(file_path).replace('.csv', '')  # Utilisez os.path.basename
+            print(f"Loading {file_name} from {file_path}")  
+            self.dataframes[file_name] = pd.read_csv(file_path)
 
-    def __init__(self, file_path):
-        self.df = pd.read_csv(file_path)
+    def describe_all(self):
+        for name, df in self.dataframes.items():
+            print(f"Analyzing {name}:")
+            viz = Viz(df)
+            for column in df.columns:
+                viz.describe(column)
 
-    def describe(self):
-        print(f"CSV : '{file_path}' - {self.df.shape[0]} lignes, {self.df.shape[1]} features")
-        print("="*40)
-        info = []
-        for column in self.df.columns:
-            non_nulls = self.df[column].notna().sum()
-            sample_value = self.df[column].dropna().iloc[0] if non_nulls > 0 else None
-            info.append([column, self.df[column].dtype, self.df.shape[0] - non_nulls, sample_value])
+    def look_all(self, top=20):
+        for name, df in self.dataframes.items():
+            viz = Viz(df)
+            for column in df.columns:
+                viz.look(column, top=top)
 
-        info_df = pd.DataFrame(info, columns=["Feature", "Type", "NaN values", "Sample value"])
-        print(info_df)
-        print("="*40)
+    def pie_all(self, top=20):
+        for name, df in self.dataframes.items():
+            viz = Viz(df)
+            for column in df.columns:
+                viz.pie(column, top=top)
+                
+    # Vous pouvez ajouter d'autres méthodes en utilisant le même modèle.
+    
+    def get_dataframe(self, name):
+        return self.dataframes.get(name, None)
 
-    def look(self, feature, top=20):
-        """Shows a distribution graph of feature"""
-        df_serie = self.df[feature].value_counts().head(top)
-        high = top // 4
-        fig, ax = plt.subplots(figsize=(14, high))
-        sns.barplot(x=df_serie.values, y=df_serie.index, ax=ax)
-        ax.set_title(f'Distribution de {feature}', size=12, weight='bold')
-        ax.bar_label(ax.containers[-1], padding=5)
-        ax.tick_params(labelsize=8, color='r')
-        plt.tight_layout()
-        plt.show()
-
-    # Vous pouvez ajouter d'autres fonctions comme celles de la classe Viz pour enrichir votre analyse.
 
