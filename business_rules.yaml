@@ -1,0 +1,14 @@
+# business_rules.yaml
+thresholds:
+  high_sales_volume: 0.75  # 75th percentile
+  high_total_sales_value: 0.75  # 75th percentile
+
+review_criteria:
+  bad_review_score: 3
+
+date_formats:
+  cutoff_date: "2018-01-01"
+
+export_settings:
+  csv_separator: ";"
+  datetime_format: "%d-%m-%Y"

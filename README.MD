@@ -1,76 +1,129 @@
-# Projet Data Science pour E-commerçant
+## Projet Data Science pour E-commerçant
 
-Ce README est conçu pour vous guider étape par étape dans l'installation et la configuration de l'environnement nécessaire pour le projet de Data Science. Même si vous n'avez aucune expérience avec Python ou la programmation, suivez simplement ces étapes.
+### Description
+Le projet ResellerPrioritizer aide l'entreprises à identifier et prioriser les revendeurs basés sur leurs performances et la qualité des services. 
 
-Qu'est-ce que Python ?
-Python est un langage de programmation populaire et facile à apprendre. Il est utilisé dans divers domaines tels que le développement web, l'automatisation, et, dans notre cas, la science des données.
+Il utilise les données des avis clients, des commandes, des articles, des vendeurs et des paiements pour créer une liste prioritaire des revendeurs.
 
-Prérequis
-Un ordinateur avec une connexion Internet.
+### Fonctionnalités
 
-Étapes d'installation
+#### Filtration des Avis Négatifs: 
+Sélectionne les revendeurs ayant reçu des avis négatifs dans un intervalle de temps spécifié.
+#### Calcul du Score de Priorité: 
+Évalue chaque revendeur en fonction de critères tels que le volume de vente, la valeur totale des ventes et la présence de commentaires.
+#### Exportation des Données: 
+Crée un fichier CSV avec la liste prioritaire des revendeurs.
 
-1. Installation de Python
-Avant de pouvoir utiliser Python, vous devez l'installer sur votre machine.
+### Installation
+#### Prérequis:
 
-Sur Windows:
-Allez sur la page de téléchargement officielle de Python.
-Téléchargez la dernière version de Python 3.
-Ouvrez le fichier téléchargé et suivez les instructions. Assurez-vous de cocher la case "Add Python to PATH" pendant l'installation.
+#### Python 3.x: 
+Langage de programmation.
+#### Pandas: 
+Bibliothèque Python pour la manipulation de données.
+#### Numpy: 
+Bibliothèque Python pour le calcul scientifique.
+#### PyYAML: 
+Bibliothèque Python pour analyser et générer des fichiers YAML.
 
-Sur macOS:
-Allez sur la page de téléchargement officielle de Python.
-Téléchargez la dernière version de Python 3.
-Ouvrez le fichier téléchargé et suivez les instructions.
+### Étapes d'installation:
+#### Installation de Python: T
+éléchargez et installez Python depuis le site officiel.
+#### Installer pip: 
+pip est le gestionnaire de paquets pour Python. Il est généralement inclus avec Python.
 
-Sur Linux:
-La plupart des distributions Linux ont déjà Python installé. Vous pouvez vérifier en ouvrant un terminal et en tapant python3 --version.
+### Configuration de l'environnement virtuel:
 
-2. Installer pip
-pip est un gestionnaire de paquets pour Python. Il permet d'installer et de gérer des bibliothèques et des dépendances supplémentaires qui ne sont pas incluses dans la bibliothèque standard de Python.
+#### Sur macOS/Linux: 
+Utilisez python3 -m venv nom_de_lenv et source nom_de_lenv/bin/activate.
+#### Sur Windows: 
+Utilisez python -m venv nom_de_lenv et .\nom_de_lenv\Scripts\activate.
 
-Heureusement, depuis Python 3.4, pip est inclus par défaut.
+### Installation des dépendances: 
+Dans l'environnement virtuel, installez les dépendances via pip install -r requirements.txt.
 
-3. Configuration de l'environnement virtuel
-Un environnement virtuel est comme une boîte dans laquelle vous pouvez mettre les dépendances spécifiques à un projet, afin qu'elles ne perturbent pas d'autres projets ou le système global.
+#### Explication des Dépendances
+#### ipykernel: 
+Permet à Jupyter de gérer des cellules Python.
+#### notebook: 
+Application Jupyter Notebook pour créer et partager des documents contenant du code et des données.
+#### pandas: 
+Bibliothèque pour la manipulation et l'analyse de données.
+#### numpy: 
+Bibliothèque pour le calcul scientifique.
+#### python-dotenv: 
+Gère les variables d'environnement.
 
-Création de l'environnement virtuel:
-Sur macOS et Linux:
-bash
-Copy code
-python3 -m venv nom_de_lenv
-source nom_de_lenv/bin/activate
-Sur Windows:
-bash
-Copy code
-python -m venv nom_de_lenv
-.\nom_de_lenv\Scripts\activate
+### Téléchargement du Code
+Téléchargez les fichiers du projet dans un répertoire de votre choix.
 
-4. Installation des dépendances
-Une fois dans votre environnement virtuel, installez les dépendances nécessaires en utilisant le fichier requirements.txt.
+### Configuration
+Configurez les chemins des fichiers de données et les règles métier dans business_rules.yaml.
 
-bash
-Copy code
-pip install -r requirements.txt
-Explication des paquets dans requirements.txt
-Voici une explication de base des paquets que vous venez d'installer:
+### Utilisation
+#### Paramétrage des Chemins de Données
+Définissez les chemins vers les fichiers CSV des avis, commandes, articles, vendeurs et paiements.
 
-ipykernel: Il s'agit du noyau IPython pour Jupyter. Il permet à Jupyter d'exécuter des cellules Python et d'interagir avec le code.
+### Exécution du Script
+Ouvrez un terminal.
+Naviguez vers le répertoire du script.
+Exécutez avec python [nom_du_script].py.
 
-notebook: Il s'agit de l'application Jupyter Notebook. C'est une application web qui vous permet de créer et de partager des documents contenant du code en direct, des équations, des visualisations et du texte explicatif.
+### Résultats
+Le script génère un fichier CSV dans ./DATA/OUT/ avec la liste des revendeurs.
 
-pandas==1.5.3: Une bibliothèque pour la manipulation et l'analyse de données. Pandas offre des structures de données puissantes, comme les DataFrames, pour travailler facilement avec des données structurées.
+### Exemple d'Utilisation
+from ASSETS.CLASS.ResellerPrioritizer import ResellerPrioritizer
 
-numpy: C'est une bibliothèque de base pour le calcul scientifique en Python. Elle fournit des objets de tableau multidimensionnels et divers outils pour travailler avec ces tableaux.
+data_paths = {
+    "reviews_path": "./DATA/IN/olist_order_reviews_dataset.csv",
+    "orders_path": "./DATA/IN/olist_orders_dataset.csv",
+    "items_path": "./DATA/IN/olist_order_items_dataset.csv",
+    "sellers_path": "./DATA/IN/olist_sellers_dataset.csv",
+    "payments_path": "./DATA/IN/olist_order_payments_dataset.csv"
+}
 
-plotly==5.17.0: Plotly est une bibliothèque de visualisation interactive. Elle vous permet de créer des graphiques qui peuvent être consultés et modifiés directement dans un navigateur web.
+config_path = './business_rules.yaml'
+days_back = 1
+current_date = '2018-09-01'
 
-matplotlib: Une bibliothèque pour créer des visualisations statiques, animées et interactives en Python. Elle est souvent utilisée en combinaison avec d'autres bibliothèques de données pour visualiser les résultats.
+reseller_manager = ResellerPrioritizer(config_path, **data_paths, days_back=days_back, current_date=current_date)
+reseller_manager.process()
 
-python-dotenv: Cette bibliothèque permet de charger des variables d'environnement depuis un fichier .env vers l'environnement de votre shell. C'est pratique pour gérer des secrets ou des configurations spécifiques à l'environnement.
 
-seaborn : Seaborn est une bibliothèque de visualisation basée sur Matplotlib. Elle fournit une interface de haut niveau pour créer des visualisations attrayantes et informatives en utilisant des thèmes et des palettes de couleurs par défaut qui sont plus esthétiques que Matplotlib pur.
+### Support
+Pour toute question ou assistance, contactez Jonathan Dupau.
 
-openpyxl: Une bibliothèque pour lire et écrire des fichiers Excel (xlsx/xlsm/xltx/xltm). Cela signifie que vous pouvez facilement charger des feuilles de calcul Excel dans Python pour l'analyse ou écrire des résultats d'analyse dans un format Excel.
 
-scikit-learn: Une bibliothèque pour le machine learning en Python. Elle fournit une gamme d'outils simples et efficaces pour la modélisation de données, y compris la classification, la régression, le clustering et la réduction de la dimensionnalité.
+## Classe ResellerPrioritizer
+La classe ResellerPrioritizer de ce projet a pour but de classer les revendeurs en analysant des indicateurs clés de performance (KPI) tels que le volume des ventes, la valeur des ventes et les scores des avis clients. 
+
+Elle exploite des données issues de multiples sources, y compris les avis, les commandes, les articles, les vendeurs et les paiements, pour construire un profil complet de chaque revendeur.
+
+### Fonctionnalités
+### Intégration des données : 
+Combine les données de plusieurs fichiers CSV en un seul DataFrame pour l'analyse.
+### Analyse des avis : 
+Filtre les avis pour identifier ceux avec des scores faibles dans un délai récent, indiquant une performance médiocre.
+### Agrégation des données : 
+Fusionne les ensembles de données pertinents et agrège les données pour calculer le total des ventes, la valeur totale des ventes et les scores moyens d'avis pour chaque vendeur.
+### Calcul du score de priorité : 
+Attribue un score de priorité à chaque revendeur basé sur une combinaison d'avis négatifs, de volume de ventes élevé et de grande valeur totale des ventes.
+### Compilation des résultats : 
+Produit un DataFrame final avec les revendeurs priorisés, prêt pour des actions ou des examens supplémentaires.
+
+## Flux de travail
+### Initialisation : 
+Accepte les chemins vers les fichiers CSV pertinents et les charge dans des DataFrames, préparant le terrain pour le processus de priorisation.
+### Filtrage des avis 
+négatifs : Isoler les avis avec des scores en dessous d'un certain seuil qui ont été postés dans un nombre défini de jours à partir de la date actuelle.
+### Fusion des données : 
+Combine les avis filtrés avec les données des commandes, des articles, des vendeurs et des paiements pour une vue d'ensemble.
+### Calcul du score de priorité : 
+Utilise des seuils prédéfinis pour identifier les revendeurs à haute priorité et calcule un score de priorité pour chacun.
+### Priorisation des revendeurs : 
+Agrège et fusionne les données pour mettre en évidence les revendeurs nécessitant une attention, basée sur le score de priorité.
+### Exportation des résultats : 
+Sort la liste finalisée des revendeurs priorisés dans un fichier CSV, formaté selon les paramètres spécifiés.
+### Utilisation
+Pour utiliser cette classe, instanciez-la avec les chemins de fichiers CSV requis et les paramètres, puis appelez la méthode process() pour exécuter le flux de travail complet de priorisation. Le résultat sera un fichier CSV contenant la liste triée des revendeurs basée sur le score de priorité calculé, prêt pour un usage commercial tel que des communications ciblées ou des interventions.
